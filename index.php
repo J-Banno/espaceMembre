@@ -16,7 +16,7 @@
 <body>
 
     <h1>Insription</h1>
-    <p>Bienvenue, pour en voire plus, inscrivez-vous.</p>
+    <p>Bienvenue, pour en voire plus, inscrivez-vous. Sinon <a href="connection.php">connectez-vous</a>.</p>
 
     <!-- Formulaire -->
     <table>
@@ -25,14 +25,14 @@
             <tr>
                 <td>Pseudo</td>
                 <td>
-                    <input for="pseudo" name="pseudo" type="text" required>
+                    <input for="pseudo" name="pseudo" type="text" placeholder="Votre pseudo" required>
                 </td>
             </tr>
             <!-- Email -->
             <tr>
                 <td>Email</td>
                 <td>
-                    <input type="email" name="mail" required>
+                    <input type="email" name="mail" placeholder="email@gmail.com" required>
                 </td>
             </tr>
 
@@ -40,24 +40,22 @@
             <tr>
                 <td>Mot de passe</td>
                 <td>
-                    <input type="password" name="pass" required>
+                    <input type="password" name="pass" placeholder="*****" required>
                 </td>
             </tr>
             <!-- Confirmation mot de passe -->
             <tr>
-                <td>Confirmer votre mot de passe</td>
+                <td>Confirmer mot de passe</td>
                 <td>
-                    <input type="password" name="confirmPass" required>
-                </td>
-            </tr>
-            <!-- Boutton -->
-            <tr>
-                <td>
-                    <button type="submit">Valider</button>
+                    <input type="password" name="confirmPass" placeholder="*****" required>
                 </td>
             </tr>
         </form>
     </table>
+
+    <!-- Boutton -->
+    <button type="submit">S'inscrire</button>
+
 </body>
 
 </html>
