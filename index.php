@@ -14,48 +14,55 @@
 </head>
 
 <body>
+    <header>
+        <h1>Insription</h1>
+    </header>
+    <div class="container">
+        <p id="info">Bienvenue, pour en voire plus, inscrivez-vous. Sinon <a href="connection.php">connectez-vous</a>.</p>
 
-    <h1>Insription</h1>
-    <p>Bienvenue, pour en voire plus, inscrivez-vous. Sinon <a href="connection.php">connectez-vous</a>.</p>
+        <!-- Formulaire -->
 
-    <!-- Formulaire -->
-    <table>
-        <form method="post" action=" /index.php">
-            <!-- Pseudo -->
-            <tr>
-                <td>Pseudo</td>
-                <td>
-                    <input for="pseudo" name="pseudo" type="text" placeholder="Votre pseudo" required>
-                </td>
-            </tr>
-            <!-- Email -->
-            <tr>
-                <td>Email</td>
-                <td>
-                    <input type="email" name="mail" placeholder="email@gmail.com" required>
-                </td>
-            </tr>
+        <div id="form">
+            <form method="post" action=" /index.php">
+                <table>
+                    <!-- Pseudo -->
+                    <tr>
+                        <td>Pseudo</td>
+                        <td>
+                            <input for="pseudo" name="pseudo" type="text" placeholder="Votre pseudo" required>
+                        </td>
+                    </tr>
+                    <!-- Email -->
+                    <tr>
+                        <td>Email</td>
+                        <td>
+                            <input type="email" name="mail" placeholder="email@gmail.com" required>
+                        </td>
+                    </tr>
 
-            <!-- Mot de passe -->
-            <tr>
-                <td>Mot de passe</td>
-                <td>
-                    <input type="password" name="pass" placeholder="*****" required>
-                </td>
-            </tr>
-            <!-- Confirmation mot de passe -->
-            <tr>
-                <td>Confirmer mot de passe</td>
-                <td>
-                    <input type="password" name="confirmPass" placeholder="*****" required>
-                </td>
-            </tr>
-        </form>
-    </table>
+                    <!-- Mot de passe -->
+                    <tr>
+                        <td>Mot de passe</td>
+                        <td>
+                            <input type="password" name="pass" placeholder="*****" required>
+                        </td>
+                    </tr>
+                    <!-- Confirmation mot de passe -->
+                    <tr>
+                        <td>Confirmer mot de passe</td>
+                        <td>
+                            <input type="password" name="confirmPass" placeholder="*****" required>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
 
-    <!-- Boutton -->
-    <button type="submit">S'inscrire</button>
-
+        <!-- Boutton -->
+        <div id="button">
+            <button type="submit">S'inscrire</button>
+        </div>
+    </div>
 </body>
 
 </html>

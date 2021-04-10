@@ -13,33 +13,39 @@
 </head>
 
 <body>
-    <h1>Connexion</h1>
-    <p>Connectez-vous à votre espace. Sinon <a href="index.php">incrivez-vous</a>.</p>
-    <!-- Formulaire -->
-    <table>
-        <form method="post" action=" /index.php">
+    <header>
+        <h1>Connexion</h1>
+    </header>
+    <div id="container">
+        <p id="info">Connectez-vous à votre espace. Sinon <a href="index.php">incrivez-vous</a>.</p>
 
-            <!-- Email -->
-            <tr>
-                <td>Email</td>
-                <td>
-                    <input type="email" name="mail" placeholder="email@gmail.com" required>
-                </td>
-            </tr>
+        <!-- Formulaire -->
+        <div id="form">
+            <form method="post" action=" /index.php">
+                <table>
+                    <!-- Email -->
+                    <tr>
+                        <td>Email</td>
+                        <td>
+                            <input type="email" name="mail" placeholder="email@gmail.com" required>
+                        </td>
+                    </tr>
+                    <!-- Mot de passe -->
+                    <tr>
+                        <td>Mot de passe</td>
+                        <td>
+                            <input type="password" name="pass" placeholder="*****" required>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
 
-            <!-- Mot de passe -->
-            <tr>
-                <td>Mot de passe</td>
-                <td>
-                    <input type="password" name="pass" placeholder="*****" required>
-                </td>
-            </tr>
-
-        </form>
-    </table>
-
-    <!-- Boutton -->
-    <button type="submit">Se connecter</button>
+        <div id="button">
+            <!-- Boutton -->
+            <button type="submit">Se connecter</button>
+        </div>
+    </div>
 </body>
 
 </html>
