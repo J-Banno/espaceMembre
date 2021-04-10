@@ -54,6 +54,12 @@ a {
 #info {
   text-align: center;
 }
+#error {
+  background-color: red;
+  color: white;
+  text-align: center;
+  padding: 5px;
+}
 .container {
   width: 1000px;
   margin: 0 auto;

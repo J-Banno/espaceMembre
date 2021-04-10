@@ -17,7 +17,7 @@
         <h1>Connexion</h1>
     </header>
     <div id="container">
-        <p id="info">Connectez-vous à votre espace. Sinon <a href="index.php">incrivez-vous</a>.</p>
+        <p id="info">Connectez-vous à votre espace. Sinon <a href="index.php">inscrivez-vous</a>.</p>
 
         <!-- Formulaire -->
         <div id="form">
@@ -38,13 +38,14 @@
                         </td>
                     </tr>
                 </table>
+                <div id="button">
+                    <!-- Boutton -->
+                    <button type="submit">Se connecter</button>
+                </div>
             </form>
         </div>
 
-        <div id="button">
-            <!-- Boutton -->
-            <button type="submit">Se connecter</button>
-        </div>
+
     </div>
 </body>
 
