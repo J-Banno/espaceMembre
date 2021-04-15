@@ -1,4 +1,28 @@
 <?php
+require('src/connection.php');
+if (!empty($_POST['mail']) && !empty($_POST['pass'])) {
+
+    //Variable
+    $email     = $_POST['mail'];
+    $passeword = $_POST['pass'];
+    $error = 1;
+    //Encrypter le pass
+    $passeword = "hi1" . sha1($passeword . "*oko*59") . "25";
+
+    //Requête
+    $req = $db->prepare('SELECT * FROM users WHERE mail = ?');
+    $req->execute(array($email));
+
+    while ($user = $req->fetch()) {
+        if ($passeword == $user['pass']) {
+            $error = 0;
+            header('Location: /espaceMembre/connection.php?success=1');
+        }
+    }
+    if ($error == 1) {
+        header('Location: /espaceMembre/connection.php?error=1');
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,9 +43,17 @@
     <div id="container">
         <p id="info">Connectez-vous à votre espace. Sinon <a href="index.php">inscrivez-vous</a>.</p>
 
+        <!-- Gestion des erreurs -->
+        <?php
+        if (isset($_GET['error'])) {
+            echo '<p id="error">Impossible de vous identifier.</p>';
+        } else if (isset($_GET['success'])) {
+            echo '<p id="success">Vous êtes connecté.</p>';
+        }
+        ?>
         <!-- Formulaire -->
         <div id="form">
-            <form method="post" action=" /index.php">
+            <form method="post" action="connection.php">
                 <table>
                     <!-- Email -->
                     <tr>
@@ -38,6 +70,9 @@
                         </td>
                     </tr>
                 </table>
+                <p><label>
+                        <input type="checkbox" name="connect" checkdate>Connexion automatique</label>
+                </p>
                 <div id="button">
                     <!-- Boutton -->
                     <button type="submit">Se connecter</button>

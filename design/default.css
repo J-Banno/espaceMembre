@@ -60,6 +60,12 @@ a {
   text-align: center;
   padding: 5px;
 }
+#success {
+  background-color: green;
+  color: white;
+  text-align: center;
+  padding: 5px;
+}
 .container {
   width: 1000px;
   margin: 0 auto;

@@ -16,7 +16,30 @@ if (!empty($_POST['pseudo']) && !empty($_POST['mail']) && !empty($_POST['pass'])
     }
 
     //Controle si le mail est déjà utilisé
+    $req = $db->prepare("SELECT count(*) as numberEmail FROM users WHERE mail = ?");
+    $req->execute(array($email));
 
+    while ($controlEmail = $req->fetch()) {
+        if ($controlEmail['numberEmail'] != 0) {
+            header('location: /espaceMembre/index.php?error=1&email=1');
+            exit();
+        }
+    }
+
+    // HASH
+    $secret = sha1($email) . time();
+    $secret = sha1($secret) . time() . time();
+
+    // CRYPTAGE DU PASSWORD
+    $pass = "hi1" . sha1($pass . "*oko*59") . "25";
+
+    // ENVOI DE LA REQUETE
+    $req = $db->prepare("INSERT INTO users(pseudo, mail, pass, secret) VALUES(?,?,?,?)");
+
+    $value = $req->execute(array($pseudo, $email, $pass, $secret));
+
+    header('location: /espaceMembre/index.php?success=1');
+    exit();
 }
 
 ?>
@@ -39,12 +62,20 @@ if (!empty($_POST['pseudo']) && !empty($_POST['mail']) && !empty($_POST['pass'])
     <div class="container">
         <p id="info">Bienvenue, pour en voire plus, inscrivez-vous. Sinon <a href="connection.php">connectez-vous</a>.</p>
 
-        <!----- Si mot de passe différents ---->
+        <!----- Gestion des erreurs ---->
         <?php
-        if (isset($_GET['error']))
+        if (isset($_GET['error'])) {
+            //Pass différents
             if (isset($_GET['pass'])) {
                 echo '<p id="error"> Vérifier votre mot de passe.</p>';
+            } //Mail existant
+            else if (isset($_GET['email'])) {
+                echo '<p id="error">Cette adresse email est déjà utilisée.</p>';
             }
+        } //Succé
+        else if (isset($_GET['success'])) {
+            echo '<p id="success">Inscription prise  en compte.</p>';
+        }
         ?>
 
         <!-- Formulaire -->
