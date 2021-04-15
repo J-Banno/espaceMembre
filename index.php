@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require('src/connection.php');
 //Vérication contenu
 if (!empty($_POST['pseudo']) && !empty($_POST['mail']) && !empty($_POST['pass']) && !empty($_POST['confirmPass'])) {
@@ -60,63 +62,71 @@ if (!empty($_POST['pseudo']) && !empty($_POST['mail']) && !empty($_POST['pass'])
         <h1>Insription</h1>
     </header>
     <div class="container">
-        <p id="info">Bienvenue, pour en voire plus, inscrivez-vous. Sinon <a href="connection.php">connectez-vous</a>.</p>
-
-        <!----- Gestion des erreurs ---->
+        <!--Connexion-->
         <?php
-        if (isset($_GET['error'])) {
-            //Pass différents
-            if (isset($_GET['pass'])) {
-                echo '<p id="error"> Vérifier votre mot de passe.</p>';
-            } //Mail existant
-            else if (isset($_GET['email'])) {
-                echo '<p id="error">Cette adresse email est déjà utilisée.</p>';
+        if (!isset($_SESSION['connect'])) { ?>
+
+            <p id="info">Bienvenue, pour en voire plus, inscrivez-vous. Sinon <a href="connection.php">connectez-vous</a>.</p>
+            <!----- Gestion des erreurs ---->
+            <?php
+            if (isset($_GET['error'])) {
+                //Pass différents
+                if (isset($_GET['pass'])) {
+                    echo '<p id="error"> Vérifier votre mot de passe.</p>';
+                } //Mail existant
+                else if (isset($_GET['email'])) {
+                    echo '<p id="error">Cette adresse email est déjà utilisée.</p>';
+                }
+            } //Succé
+            else if (isset($_GET['success'])) {
+                echo '<p id="success">Inscription prise  en compte.</p>';
             }
-        } //Succé
-        else if (isset($_GET['success'])) {
-            echo '<p id="success">Inscription prise  en compte.</p>';
-        }
-        ?>
+            ?>
 
-        <!-- Formulaire -->
-        <div id="form">
-            <form method="POST" action="index.php">
-                <table>
-                    <!-- Pseudo -->
-                    <tr>
-                        <td>Pseudo</td>
-                        <td>
-                            <input name="pseudo" type="text" placeholder="Votre pseudo" required>
-                        </td>
-                    </tr>
-                    <!-- Email -->
-                    <tr>
-                        <td>Email</td>
-                        <td>
-                            <input type="email" name="mail" placeholder="email@gmail.com" required>
-                        </td>
-                    </tr>
+            <!-- Formulaire -->
+            <div id="form">
+                <form method="POST" action="index.php">
+                    <table>
+                        <!-- Pseudo -->
+                        <tr>
+                            <td>Pseudo</td>
+                            <td>
+                                <input name="pseudo" type="text" placeholder="Votre pseudo" required>
+                            </td>
+                        </tr>
+                        <!-- Email -->
+                        <tr>
+                            <td>Email</td>
+                            <td>
+                                <input type="email" name="mail" placeholder="email@gmail.com" required>
+                            </td>
+                        </tr>
 
-                    <!-- Mot de passe -->
-                    <tr>
-                        <td>Mot de passe</td>
-                        <td>
-                            <input type="password" name="pass" placeholder="*****" required>
-                        </td>
-                    </tr>
-                    <!-- Confirmation mot de passe -->
-                    <tr>
-                        <td>Confirmer mot de passe</td>
-                        <td>
-                            <input type="password" name="confirmPass" placeholder="*****" required>
-                        </td>
-                    </tr>
-                </table> <!-- Boutton -->
-                <div id="button">
-                    <button type="submit">S'inscrire</button>
-                </div>
-            </form>
-        </div>
+                        <!-- Mot de passe -->
+                        <tr>
+                            <td>Mot de passe</td>
+                            <td>
+                                <input type="password" name="pass" placeholder="*****" required>
+                            </td>
+                        </tr>
+                        <!-- Confirmation mot de passe -->
+                        <tr>
+                            <td>Confirmer mot de passe</td>
+                            <td>
+                                <input type="password" name="confirmPass" placeholder="*****" required>
+                            </td>
+                        </tr>
+                    </table> <!-- Boutton -->
+                    <div id="button">
+                        <button type="submit">S'inscrire</button>
+                    </div>
+                </form>
+            </div>
+        <?php } else { ?>
+
+            <p id="info">Bonjour <?= $_SESSION['pseudo'] ?></p>
+
+        <?php } ?>
 
 
     </div>

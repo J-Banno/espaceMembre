@@ -1,5 +1,13 @@
 <?php
+//session
+session_start();
+if (isset($_SESSION['connect'])) {
+    header('Location: /espaceMembre/connection.php');
+}
+//Import basse de donnée
 require('src/connection.php');
+
+//Vérification formulaire
 if (!empty($_POST['mail']) && !empty($_POST['pass'])) {
 
     //Variable
@@ -16,6 +24,8 @@ if (!empty($_POST['mail']) && !empty($_POST['pass'])) {
     while ($user = $req->fetch()) {
         if ($passeword == $user['pass']) {
             $error = 0;
+            $_SESSION['connect'] = 1;
+            $_SESSION['pseudo'] = $user['pseudo'];
             header('Location: /espaceMembre/connection.php?success=1');
         }
     }
