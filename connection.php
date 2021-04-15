@@ -26,6 +26,12 @@ if (!empty($_POST['mail']) && !empty($_POST['pass'])) {
             $error = 0;
             $_SESSION['connect'] = 1;
             $_SESSION['pseudo'] = $user['pseudo'];
+
+            //Connexion automatique
+            if (isset($POST['connect'])) {
+                //Création d'un cookie
+                setcookie('log', $user['secret'], time() + 365 * 24 * 3600, '/', null, false, true);
+            }
             header('Location: /espaceMembre/connection.php?success=1');
         }
     }
