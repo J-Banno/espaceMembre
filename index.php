@@ -124,7 +124,9 @@ if (!empty($_POST['pseudo']) && !empty($_POST['mail']) && !empty($_POST['pass'])
             </div>
         <?php } else { ?>
 
-            <p id="info">Bonjour <?= $_SESSION['pseudo'] ?></p>
+            <p id="info">Bonjour <?= $_SESSION['pseudo'] ?><br>
+                <a href="disconnection.php">Déconnexion</a>
+            </p>
 
         <?php } ?>
 
